@@ -18,5 +18,3 @@ export function useEditCabin() {
   });
   return { isEditing, editCabin };
 }
-
-export default useEditCabin;
