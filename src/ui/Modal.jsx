@@ -1,14 +1,7 @@
-import {
-  cloneElement,
-  createContext,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { cloneElement, createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
 import { HiX } from "react-icons/hi";
-import { useHref } from "react-router-dom";
+
 import styled from "styled-components";
 import { useOutsideClick } from "../hooks/useOutsideClick";
 
