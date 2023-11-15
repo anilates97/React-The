@@ -5,6 +5,7 @@ import {
   Area,
   AreaChart,
   CartesianGrid,
+  LineChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -21,6 +22,10 @@ const StyledSalesChart = styled(DashboardBox)`
   & .recharts-cartesian-grid-vertical line {
     stroke: var(--color-grey-300);
   }
+`;
+
+const StyledDiv = styled.div`
+  width: 100%;
 `;
 
 function SalesChart({ bookings, numDays }) {
@@ -58,47 +63,48 @@ function SalesChart({ bookings, numDays }) {
       };
 
   return (
-    <div>
-      <StyledSalesChart>
-        <Heading as="h2">Sales</Heading>
+    <StyledSalesChart>
+      <Heading as="h2">
+        Sales from {format(allDates.at(0), "MMM dd yyyy")} &mdash;
+        {format(allDates.at(0), "MMM dd yyyy")}
+      </Heading>
 
-        <ResponsiveContainer height={300} width="100%">
-          <AreaChart data={data}>
-            <XAxis
-              dataKey="label"
-              tick={{ fill: colors.text }}
-              tickLine={{ stroke: colors.text }}
-            />
-            <YAxis
-              unit="$"
-              tick={{ fill: colors.text }}
-              tickLine={{ stroke: colors.text }}
-            />
-            <CartesianGrid strokeDasharray="4" />
-            <Tooltip contentStyle={{ backgroundColor: colors.background }} />
-            <Area
-              dataKey="totalSales"
-              type="monotone"
-              stroke={colors.totalSales.stroke}
-              fill={colors.totalSales.fill}
-              strokeWidth={2}
-              name="Total sales"
-              unit="$"
-            />
-            <Area
-              dataKey="extrasSales"
-              type="monotone"
-              stroke={colors.extrasSales.stroke}
-              fill={colors.extrasSales.fill}
-              strokeWidth={2}
-              name="
+      <ResponsiveContainer height={300}>
+        <AreaChart data={data}>
+          <XAxis
+            dataKey="label"
+            tick={{ fill: colors.text }}
+            tickLine={{ stroke: colors.text }}
+          />
+          <YAxis
+            unit="$"
+            tick={{ fill: colors.text }}
+            tickLine={{ stroke: colors.text }}
+          />
+          <CartesianGrid strokeDasharray="4" />
+          <Tooltip contentStyle={{ backgroundColor: colors.background }} />
+          <Area
+            dataKey="totalSales"
+            type="monotone"
+            stroke={colors.totalSales.stroke}
+            fill={colors.totalSales.fill}
+            strokeWidth={2}
+            name="Total sales"
+            unit="$"
+          />
+          <Area
+            dataKey="extrasSales"
+            type="monotone"
+            stroke={colors.extrasSales.stroke}
+            fill={colors.extrasSales.fill}
+            strokeWidth={2}
+            name="
               Extra sales"
-              unit="$"
-            />
-          </AreaChart>
-        </ResponsiveContainer>
-      </StyledSalesChart>
-    </div>
+            unit="$"
+          />
+        </AreaChart>
+      </ResponsiveContainer>
+    </StyledSalesChart>
   );
 }
 
